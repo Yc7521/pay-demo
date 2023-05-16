@@ -2,6 +2,7 @@ package com.ruoyi.goods.service;
 
 import java.util.List;
 import com.ruoyi.goods.domain.Goods;
+import com.ruoyi.goods.domain.vm.GoodsVM;
 
 /**
  * 商品Service接口
@@ -26,6 +27,8 @@ public interface IGoodsService
      * @return 商品集合
      */
     public List<Goods> selectGoodsList(Goods goods);
+
+    List<GoodsVM> selectGoodsVMList(Goods goods);
 
     /**
      * 新增商品

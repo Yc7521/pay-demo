@@ -2,6 +2,8 @@ package com.ruoyi.goods.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.goods.domain.vm.GoodsVM;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +44,7 @@ public class GoodsController extends BaseController
     public TableDataInfo list(Goods goods)
     {
         startPage();
-        List<Goods> list = goodsService.selectGoodsList(goods);
+        List<GoodsVM> list = goodsService.selectGoodsVMList(goods);
         return getDataTable(list);
     }
 

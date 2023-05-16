@@ -17,22 +17,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="商品描述" prop="description">
-        <el-input
-          v-model="queryParams.description"
-          placeholder="请输入商品描述"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品图片" prop="picture">
-        <el-input
-          v-model="queryParams.picture"
-          placeholder="请输入商品图片"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="商品库存" prop="stock">
         <el-input
           v-model="queryParams.stock"
@@ -117,7 +101,11 @@
       <el-table-column label="商品名称" align="center" prop="name" />
       <el-table-column label="商品价格" align="center" prop="price" />
       <el-table-column label="商品描述" align="center" prop="description" />
-      <el-table-column label="商品图片" align="center" prop="picture" />
+      <el-table-column label="商品图片" align="center" prop="picture" width="100">
+        <template slot-scope="scope">
+          <image-preview :src="scope.row.picture" :width="50" :height="50"/>
+        </template>
+      </el-table-column>
       <el-table-column label="商品库存" align="center" prop="stock" />
       <el-table-column label="商品标签" align="center" prop="tag">
         <template slot-scope="scope">
@@ -144,7 +132,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -162,11 +150,11 @@
         <el-form-item label="商品价格" prop="price">
           <el-input v-model="form.price" placeholder="请输入商品价格" />
         </el-form-item>
-        <el-form-item label="商品描述" prop="description">
-          <el-input v-model="form.description" placeholder="请输入商品描述" />
+        <el-form-item label="商品描述">
+          <editor v-model="form.description" :min-height="192"/>
         </el-form-item>
         <el-form-item label="商品图片" prop="picture">
-          <el-input v-model="form.picture" placeholder="请输入商品图片" />
+          <image-upload v-model="form.picture"/>
         </el-form-item>
         <el-form-item label="商品库存" prop="stock">
           <el-input v-model="form.stock" placeholder="请输入商品库存" />
